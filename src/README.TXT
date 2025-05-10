@@ -1,27 +1,57 @@
-Project: zuul-better
-Authors: Michael Kölling and David J. Barnes
+Zuul over Telnet – Textbasiertes Adventure-Spiel im Netzwerk
+=============================================================
 
-This project is part of the material for the book
+Dieses Projekt ist eine erweiterte Version des klassischen "World of Zuul" Text-Adventures,
+die so angepasst wurde, dass das Spiel über eine Netzwerkverbindung per Telnet spielbar ist.
 
-   Objects First with Java - A Practical Introduction using BlueJ
-   Sixth edition
-   David J. Barnes and Michael Kölling
-   Pearson Education, 2016
-   
-This project is a simple framework for an adventure game. In this version,
-it has a few rooms and the ability for a player to walk between these rooms.
-That's all.
+Projektstruktur
+---------------
+Die wichtigsten Klassen:
 
-To start this application, create an instance of class "Game" and call its
-"play" method.
+- Game.java            → Hauptklasse des Spiels, angepasst für Input/Output über Socket-Streams
+- Parser.java          → Liest Eingaben über Socket-InputStream
+- Command.java         → Repräsentiert Benutzerbefehle
+- CommandWords.java    → Enthält alle gültigen Befehle
+- Room.java            → Repräsentiert Räume im Spiel
+- Items.java           → Repräsentiert Items, die aufgesammelt werden können
+- Server.java          → Startet den Socket-Server und leitet Verbindungen an eine Game-Instanz weiter
 
-This project was written as the starting point of a small Java project.
+Spielidee
+---------
+Der Spieler wacht an der Uni auf und hat alle seine Gegenstände verloren.
+Ziel ist es, alle Items wiederzufinden, indem man sich durch verschiedene Räume bewegt und diese durchsucht.
 
-The goal is to extend the game:
+Spielstart & Test
+-----------------
+1. Projekt kompilieren:
+   > javac *.java
 
-  - add items to rooms (items may have weight)
-  - add multiple players
-  - add commands (pick, drop, examine, read, ...)
-  - (anything you can think of, really...)
+2. Server starten:
+   > java Server
+   Ausgabe: "Server läuft auf Port 8000"
 
-Read chapter 8 of the book to get a detailed description of the project.
+3. In neuer Konsole per Telnet verbinden:
+   > telnet localhost 8000
+
+4. Spiel spielen mit Befehlen wie:
+   > go east
+   > look
+   > check
+   > pick Bottle
+   > items
+   > quit
+
+Bekannte Befehle:
+-----------------
+- go <richtung>        → Gehe in eine Richtung (east, west, north, south)
+- look                 → Beschreibung des aktuellen Raums
+- check                → Zeigt Items im Raum
+- pick <item>          → Hebt ein Item auf
+- items                → Zeigt Inventar
+- help                 → Zeigt alle verfügbaren Befehle
+- quit                 → Beendet das Spiel
+
+Hinweise
+--------
+- Das Spiel funktioniert auch mit mehreren parallelen Telnet-Verbindungen.
+- Jeder Client sp
