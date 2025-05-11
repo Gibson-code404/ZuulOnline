@@ -1,8 +1,21 @@
 import java.io.*;
 import java.net.*;
 
+
+/**
+ * The Client class connects to a server via TCP socket on localhost:8000.
+ * It reads user input from the console, sends it to the server,
+ * and displays responses from the server in real time.
+ */
 public class Client {
-    public static void main(String[] args) throws IOException {
+
+    /**
+     * Main method that sets up the client, connects to the server,
+     * and handles input/output communication.
+     * @param args Not used.
+     * @throws IOException If an I/O error occurs during socket communication.
+     */
+    public static void main (String[] args) throws IOException {
         Socket socket = new Socket("localhost", 8000);
 
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));

@@ -9,6 +9,13 @@ public class Game {
     private HashMap<String, Items> inventory;
     private PrintWriter out;
 
+
+
+    /**
+     * Constructs a Game instance with input and output streams.
+     * @param input  Input stream from the user (typically System.in).
+     * @param output Output stream to display messages (typically System.out).
+     */
     public Game(InputStream input, OutputStream output) {
         this.out = new PrintWriter(output, true);
         this.parser = new Parser(input, output);
@@ -16,6 +23,11 @@ public class Game {
         this.inventory = new HashMap<>();
     }
 
+
+     /**
+     * Initializes all rooms and their connections, adds items to each room,
+     * and sets the starting room.
+     */
     private void createRooms() {
         Room outside, commonRoom, pub, redRoom, office, toilette;
 

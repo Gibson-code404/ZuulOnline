@@ -1,6 +1,10 @@
 import java.io.*;
 import java.net.*;
 
+/**
+ * Server class that listens for incoming client connections on port 8000.
+ * For each client, it starts a new thread that runs a text-based adventure game session.
+ */
 public class Server {
     public static void main(String[] args) throws IOException {
         int port = 8000;
